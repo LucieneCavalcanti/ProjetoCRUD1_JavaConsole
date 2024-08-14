@@ -1,26 +1,39 @@
 package data;
 
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
 import model.StatusModel;
 
-public class StatusData implements CRUD{
+public class StatusData extends Conexao implements CRUD{
 
     @Override
     public boolean incluir(StatusModel obj) throws Exception {
-        // TODO Auto-generated method stub
-        return true;
+        String sql="insert into tbstatus (descricao) 
+        values (?)";
+        PreparedStatement ps = getConexao().prepareStatement(sql);
+        ps.setString(1,obj.getDescricao());
+        if(ps.executeUpdate()>0) return true;
+        else return false;
     }
 
     @Override
     public boolean excluir(int id) throws Exception {
-        // TODO Auto-generated method stub
-        return true;
+        String sql="delete from tbstatus where id= ?";
+        PreparedStatement ps = getConexao().prepareStatement(sql);
+        ps.setInt(1,id);
+        if(ps.executeUpdate()>0) return true;
+        else return false;
     }
 
     @Override
     public boolean atualizar(StatusModel obj) throws Exception {
-        // TODO Auto-generated method stub
+        String sql="update tbstatus set descricao=? where id=?";
+        PreparedStatement ps = getConexao().prepareStatement(sql);
+        ps.setString(1,obj.getDescricao());
+        ps.setInt(2,obj.getId());
+        if(ps.executeUpdate()>0) return true;
+        else return false;
         return true;    
     }
 
