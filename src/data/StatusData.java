@@ -9,14 +9,12 @@ public class StatusData extends Conexao implements CRUD{
 
     @Override
     public boolean incluir(StatusModel obj) throws Exception {
-        String sql="insert into tbstatus (descricao) 
-        values (?)";
+        String sql="insert into tbstatus (descricao) values (?)";
         PreparedStatement ps = getConexao().prepareStatement(sql);
         ps.setString(1,obj.getDescricao());
         if(ps.executeUpdate()>0) return true;
         else return false;
     }
-
     @Override
     public boolean excluir(int id) throws Exception {
         String sql="delete from tbstatus where id= ?";
@@ -25,7 +23,6 @@ public class StatusData extends Conexao implements CRUD{
         if(ps.executeUpdate()>0) return true;
         else return false;
     }
-
     @Override
     public boolean atualizar(StatusModel obj) throws Exception {
         String sql="update tbstatus set descricao=? where id=?";
@@ -34,7 +31,6 @@ public class StatusData extends Conexao implements CRUD{
         ps.setInt(2,obj.getId());
         if(ps.executeUpdate()>0) return true;
         else return false;
-        return true;    
     }
 
     @Override
