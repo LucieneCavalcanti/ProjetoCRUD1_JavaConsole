@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "TesteConexao",
+            "request": "launch",
+            "mainClass": "data.TesteConexao",
+            "projectName": "ProjetoCRUD1_JavaConsole_89530275"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"
