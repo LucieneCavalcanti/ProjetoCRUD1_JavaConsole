@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import model.StatusModel;
 
 public class StatusData extends Conexao implements CRUD{
-
+    public StatusData() throws Exception {}
     @Override
     public boolean incluir(StatusModel obj) throws Exception {
         String sql="insert into tbstatus (descricao) values (?)";

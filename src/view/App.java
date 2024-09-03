@@ -23,7 +23,7 @@ public class App {
                 switch (opcao) {
                     case 1:
                         System.out.println("Digite a descrição:");
-                        obj.setDescricao(entrada.nextLine());
+                        obj.setDescricao(entrada.next());
                         if(DAO.incluir(obj)) System.out.println("Salvo");
                         else System.out.println("Erro ao salvar.");
                         break;
