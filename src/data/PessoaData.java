@@ -3,18 +3,22 @@ package data;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
-import model.StatusModel;
+import model.PessoaModel;
 
-public class StatusData extends Conexao implements CRUD{
-    public StatusData() throws Exception {}
+public class PessoaData extends Conexao implements CRUD{
+    public PessoaData() throws Exception {}
     @Override
     public boolean incluir(Object obj) throws Exception {
-        String sql="insert into tbstatus (descricao) values (?)";
+        String sql="insert into tbpessoas (nome,email,senha,telefone,endereco) values (?,?,?,?,?)";
         PreparedStatement ps = getConexao().prepareStatement(sql);
-        StatusModel st = new StatusModel();
-        if(obj instanceof StatusModel)
-            st = (StatusModel)obj;
-        ps.setString(1,st.getDescricao());
+        PessoaModel p = new PessoaModel();
+        if(obj instanceof PessoaModel)
+            p = (PessoaModel)obj;
+        ps.setString(1,p.getNome());
+        ps.setString(2,p.getEmail());
+        ps.setString(3,p.getSenha());
+        ps.setString(4,p.getTelefone());
+        ps.setString(5,p.getEndereco());
         if(ps.executeUpdate()>0) return true;
         else return false;
     }
@@ -30,11 +34,8 @@ public class StatusData extends Conexao implements CRUD{
     public boolean atualizar(Object obj) throws Exception {
         String sql="update tbstatus set descricao=? where id=?";
         PreparedStatement ps = getConexao().prepareStatement(sql);
-        StatusModel st = new StatusModel();
-        if(obj instanceof StatusModel)
-            st = (StatusModel)obj;
-        ps.setString(1,st.getDescricao());
-        ps.setInt(2,st.getId());
+        // ps.setString(1,obj.getDescricao());
+        // ps.setInt(2,obj.getId());
         if(ps.executeUpdate()>0) return true;
         else return false;
     }
