@@ -1,7 +1,9 @@
 package data;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
+
 
 import model.StatusModel;
 
@@ -39,17 +41,25 @@ public class StatusData extends Conexao implements CRUD{
         else return false;
     }
 
-    @Override
-    public ArrayList<Object> pesquisar(String pesquisa) throws Exception {
+
+    public ArrayList<StatusModel> pesquisar(String pesquisa) throws Exception {
         // TODO Auto-generated method stub
-        ArrayList<Object> dados = new ArrayList<>();
+        ArrayList<StatusModel> dados = new ArrayList<>();
+        String sql="Select * from tbStatus where descricao like ?";
+        PreparedStatement ps = getConexao().prepareStatement(sql);
+        ps.setString(1, pesquisa+"%");
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            StatusModel obj = new StatusModel(rs.getInt("id"),
+            rs.getString("descricao"));
+            dados.add(obj);
+        }
         return dados;
     }
 
-    @Override
-    public Object pesquisar(int id) throws Exception {
+    public StatusModel pesquisar(int id) throws Exception {
         // TODO Auto-generated method stub
-        Object obj = new Object();
+        StatusModel obj = new StatusModel();
         return obj;
     }
 

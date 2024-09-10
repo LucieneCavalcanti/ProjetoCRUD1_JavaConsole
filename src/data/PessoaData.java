@@ -1,9 +1,11 @@
 package data;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import model.PessoaModel;
+import model.StatusModel;
 
 public class PessoaData extends Conexao implements CRUD{
     public PessoaData() throws Exception {}
@@ -40,15 +42,22 @@ public class PessoaData extends Conexao implements CRUD{
         else return false;
     }
 
-    @Override
-    public ArrayList<Object> pesquisar(String pesquisa) throws Exception {
+    public ArrayList<PessoaModel> pesquisar(String pesquisa) throws Exception {
         // TODO Auto-generated method stub
-        ArrayList<Object> dados = new ArrayList<>();
+        ArrayList<PessoaModel> dados = new ArrayList<>();
+        String sql="Select * from tbPessoas where nome like ?";
+        PreparedStatement ps = getConexao().prepareStatement(sql);
+        ps.setString(1, pesquisa+"%");
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            PessoaModel obj = new PessoaModel(rs.getInt("id"),
+            rs.getString("nome"),rs.getString("email"),rs.getString("senha"),
+            rs.getString("telefone"), rs.getString("endereco"));
+            dados.add(obj);
+        }
         return dados;
     }
 
-    @Override
-    public Object pesquisar(int id) throws Exception {
         // TODO Auto-generated method stub
         Object obj = new Object();
         return obj;
