@@ -58,9 +58,7 @@ public class PessoaData extends Conexao implements CRUD{
         return dados;
     }
 
-        // TODO Auto-generated method stub
-        Object obj = new Object();
-        return obj;
-    }
+
+    
 
 }
