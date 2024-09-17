@@ -1,9 +1,6 @@
 package view;
 
 import java.util.Scanner;
-
-import com.mysql.cj.exceptions.ExceptionFactory;
-
 import java.util.ArrayList;
 import data.PessoaData;
 import data.StatusData;
@@ -23,7 +20,7 @@ public class App {
         do {
             try {
                 System.out.println("---- MENU ----");
-                System.out.println("Escolha uma opção:");
+                System.out.println("\n\nEscolha uma opção:");
                 System.out.println("1 - Novo Status" +
                 "\n2 - Pesquisar Status"+
                 "\n3 - Excluir Status"+
@@ -33,7 +30,7 @@ public class App {
                 "\n6 - Pesquisar Pessoa"+
                 "\n7 - Excluir Pessoa"+
                 "\n8 - Editar Pessoa"+
-                "\n10 ------ SAIR ------");
+                "\n10 ------ SAIR ------\n\n");
                 opcao = entrada.nextInt();
                 switch (opcao) {
                     case 1:
