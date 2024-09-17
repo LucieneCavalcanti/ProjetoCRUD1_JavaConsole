@@ -23,7 +23,7 @@ public class ProdutoData extends Conexao implements CRUD{
         ps.setFloat(2, objProduto.getEstoque());
         ps.setFloat(3, objProduto.getPrecoCusto());
         ps.setFloat(4, objProduto.getPrecoVenda());
-        ps.setInt(5,objProduto.getStatus());
+        ps.setInt(5,objProduto.getStatus().getId());
         if(ps.executeUpdate()>0) return true;
         else return false;
     }
