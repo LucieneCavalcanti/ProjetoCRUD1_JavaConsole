@@ -36,8 +36,20 @@ public class ProdutoData extends Conexao implements CRUD{
 
     @Override
     public boolean atualizar(Object obj) throws Exception {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'atualizar'");
+        String sql="update tbprodutos set descricao=?,quantidade=?,
+        precocusto=?,precovenda=?, idstatus=? where id=?";
+        PreparedStatement ps = getConexao().prepareStatement(sql);
+        ProdutoModel objProduto = new ProdutoModel();
+        if(obj instanceof ProdutoModel)
+            objProduto = (ProdutoModel)obj;
+        ps.setString(1,objProduto.getDescricao());
+        ps.setFloat(2, objProduto.getEstoque());
+        ps.setFloat(3, objProduto.getPrecoCusto());
+        ps.setFloat(4, objProduto.getPrecoVenda());
+        ps.setInt(5,objProduto.getStatus().getId());
+        ps.setInt(6,objProduto.getId());
+        if(ps.executeUpdate()>0) return true;
+        else return false;
     }
 
 }
