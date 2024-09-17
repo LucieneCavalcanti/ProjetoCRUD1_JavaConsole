@@ -19,7 +19,11 @@ public class ProdutoData extends Conexao implements CRUD{
         ProdutoModel objProduto = new ProdutoModel();
         if(obj instanceof ProdutoModel)
             objProduto = (ProdutoModel)obj;
-        ps.setString(1,st.getDescricao());
+        ps.setString(1,objProduto.getDescricao());
+        ps.setFloat(2, objProduto.getEstoque());
+        ps.setFloat(3, objProduto.getPrecoCusto());
+        ps.setFloat(4, objProduto.getPrecoVenda());
+        ps.setInt(5,objProduto.getStatus());
         if(ps.executeUpdate()>0) return true;
         else return false;
     }
